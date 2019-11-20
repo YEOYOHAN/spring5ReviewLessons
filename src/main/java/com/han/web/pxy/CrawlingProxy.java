@@ -46,7 +46,7 @@ public class CrawlingProxy extends Proxy {
 	}
 
 	public ArrayList<HashMap<String, String>> cgvCrawling() {
-
+		inventory.clear();
 		final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
 		String cgv = "http://www.cgv.co.kr/movies/?lt=3";
 
@@ -77,6 +77,7 @@ public class CrawlingProxy extends Proxy {
 	}
 
 	public ArrayList<HashMap<String, String>> bugsCrawling() {
+		inventory.clear();
 		try {
 			final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
 			String bugsurl = "https://music.bugs.co.kr/chart";
@@ -89,7 +90,8 @@ public class CrawlingProxy extends Proxy {
 			HashMap<String, String> map = null;
 			for (int i = 0; i < tempforTitle.size(); i++) {
 				map = new HashMap<>();
-				map.put("rownum", string(i+1));
+				map.clear();
+				map.put("seq", string(i+1));
 				map.put("title", tempforTitle.get(i).text());
 				map.put("artist", tempforContent.get(i).text());
 				map.put("thumbnail", tempforphoto.get(i).select("img").attr("src"));

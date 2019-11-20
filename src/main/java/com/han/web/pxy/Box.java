@@ -10,6 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Box<T> {
 	private HashMap<String, T> box;
+	public Box () {
+		box = new HashMap<>();
+	}
+	public void put(String s, T t) {box.put(s, t);}
 	public void put(List<String> x, Inventory<T> y) {
 		box = new HashMap<>();
 		for (int i = 0; i < x.size(); i++) {
@@ -21,9 +25,7 @@ public class Box<T> {
 		Function<String, T> f = p->box.get(p);
 		return f.apply(k);
 	}
-	public HashMap<String, T>get(){
-		return box;
-	}
+	public HashMap<String, T>get(){return box;}
 	public int size() {return box.size();}
 	public void clear() {box.clear();}
 	public void newBox() {box = new HashMap<String,T>();}

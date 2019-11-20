@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.han.web.pxy.Box;
 import com.han.web.pxy.CrawlingProxy;
 import com.han.web.pxy.PageProxy;
 
@@ -17,6 +18,7 @@ import com.han.web.pxy.PageProxy;
 public class CrawlingCtrl {
 	@Autowired CrawlingProxy crawler;
 	@Autowired PageProxy pagep;
+	@Autowired Box<Object> box;
 	
 	@GetMapping("/naver")
 	public ArrayList<HashMap<String, String>> naver(){
@@ -36,14 +38,21 @@ public class CrawlingCtrl {
 		System.out.println("BUGS");
 		ArrayList<HashMap<String, String>> list = crawler.bugsCrawling();
 		pagep.setRowCount(list.size());
-		pagep.setPageSize(5);
+		pagep.setPageSize(10);
 		pagep.setBlockSize(5);
-		pagep.setNowPage(1);
+		pagep.setNowPage(0);
 		pagep.paging();
-		int startRow = pagep.getStartRow();
-		int pageSize = pagep.getPageSize();
-		
-		return null;
+		ArrayList<HashMap<String, String>> temp = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			if (i >= pagep.getStartRow() && i <= pagep.getEndRow()) {
+				temp.add(list.get(i));
+			}
+			if(i>pagep.getEndRow()) {break;}
+		}
+		box.put("pagep", pagep);
+		box.put("list", temp);
+		System.out.println("페이피 "+pagep.toString());
+		return box.get();
 	}
 
 }

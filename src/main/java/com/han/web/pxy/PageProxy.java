@@ -8,23 +8,29 @@ import lombok.Data;
 @Data
 @Lazy
 @Component("pagep")
-public class PageProxy extends Proxy{
-	@Autowired CrawlingProxy crawler;
-	
-	private int rowCount, startRow, endRow,
-				pageCount, pageSize, startPage, endPage, nowPage,
-				blockCount, blockSize, prevBlock, nextBlock, nowBlock;
-	
+public class PageProxy extends Proxy {
+	@Autowired
+	CrawlingProxy crawler;
+
+	private int rowCount, startRow, endRow, 
+				pageCount, pageSize, nowPage, startPage, endPage, 
+				blockCount, blockSize, nowBlock, prevBlock, nextBlock;
 	private boolean existPrev, existNext;
 	private String search;
-
+	
 	public void paging() {
-		pageSize = 5;
-		blockSize = 5;
-		printer("크롤링 사이즈 : " + rowCount);
-		pageCount = (rowCount % pageSize == 0) ? rowCount / pageSize : (rowCount / pageSize) + 1;
-		blockCount = (pageCount % blockSize == 0) ? pageCount / blockSize : (pageCount / blockSize) + 1;
-		startRow = 0;
-		endRow = 0;
+		// rowCount, pageSize, blockSize, nowPage
+		pageCount = (rowCount % pageSize != 0) ? (rowCount / pageSize) + 1 : rowCount / pageSize;
+		blockCount = (pageCount % blockSize != 0) ? (pageCount / blockSize) + 1 : pageCount / blockSize;
+		startRow = nowPage * pageSize;
+		endRow = (nowPage != (pageCount - 1)) ? startRow + (pageSize - 1) : rowCount - 1;
+		nowBlock = nowPage / blockSize;
+		startPage = nowPage * blockSize;
+		endPage = (nowPage != (blockCount - 1)) ? startPage + (blockSize - 1) : pageCount - 1;
+		prevBlock = startPage + blockSize;
+		nextBlock = startPage - blockSize;
+		existPrev = nowBlock != 0;
+		existNext = nowBlock != (blockCount - 1);
+
 	}
 }
