@@ -35,11 +35,15 @@ public class CrawlingCtrl {
 	public Map<?,?> bugs() {
 		System.out.println("BUGS");
 		ArrayList<HashMap<String, String>> list = crawler.bugsCrawling();
-		pagep.paging(list.size());
+		pagep.setRowCount(list.size());
+		pagep.setPageSize(5);
+		pagep.setBlockSize(5);
+		pagep.setNowPage(1);
+		pagep.paging();
 		int startRow = pagep.getStartRow();
 		int pageSize = pagep.getPageSize();
-		return null;
 		
+		return null;
 	}
 
 }

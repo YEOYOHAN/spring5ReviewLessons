@@ -87,12 +87,12 @@ public class CrawlingProxy extends Proxy {
 			Elements tempforContent = temp.select("p.artist");
 			Elements tempforphoto = temp.select("a.thumbnail");
 			HashMap<String, String> map = null;
-			int bugsseq = 0;
-			for (bugsseq = 1; bugsseq < tempforTitle.size(); bugsseq++) {
+			for (int i = 0; i < tempforTitle.size(); i++) {
 				map = new HashMap<>();
-				map.put("title", tempforTitle.get(bugsseq).text());
-				map.put("artist", tempforContent.get(bugsseq).text());
-				map.put("thumbnail", tempforphoto.get(bugsseq).select("img").attr("src"));
+				map.put("rownum", string(i+1));
+				map.put("title", tempforTitle.get(i).text());
+				map.put("artist", tempforContent.get(i).text());
+				map.put("thumbnail", tempforphoto.get(i).select("img").attr("src"));
 				inventory.add(map);
 			}
 		} catch (Exception e) {

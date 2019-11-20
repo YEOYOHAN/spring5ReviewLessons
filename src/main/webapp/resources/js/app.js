@@ -80,7 +80,9 @@ app = (() => {
                             })
                             break;
                         case 'BUGS':
-                            $.getJSON(_ + '/roro/bugs', d => {})
+                            $.getJSON(_ + '/roro/bugs', d => {
+                            	alert('벅스 크롤')
+                            })
                             break;
                     }
                 })
