@@ -48,7 +48,7 @@ public class CrawlingProxy extends Proxy {
 	public ArrayList<HashMap<String, String>> cgvCrawling() {
 		inventory.clear();
 		final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
-		String cgv = "http://www.cgv.co.kr/movies/?lt=3";
+		String cgv = "http://www.cgv.co.kr/movies/?lt=1&ft=0";
 
 		Connection.Response homePage;
 		try {

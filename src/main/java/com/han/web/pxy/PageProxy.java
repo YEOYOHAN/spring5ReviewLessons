@@ -20,17 +20,17 @@ public class PageProxy extends Proxy {
 	
 	public void paging() {
 		// rowCount, pageSize, blockSize, nowPage
-		pageCount = (rowCount % pageSize != 0) ? (rowCount / pageSize) + 1 : rowCount / pageSize;
-		blockCount = (pageCount % blockSize != 0) ? (pageCount / blockSize) + 1 : pageCount / blockSize;
+		pageCount = (rowCount % pageSize != 0) ? rowCount / pageSize + 1: rowCount / pageSize;
+		blockCount = (pageCount % blockSize != 0) ? pageCount / blockSize + 1: pageCount / blockSize;
 		startRow = nowPage * pageSize;
-		endRow = (nowPage != (pageCount - 1)) ? startRow + (pageSize - 1) : rowCount - 1;
+		endRow = (nowPage != (pageCount - 1)) ? startRow + (pageSize-1) : rowCount - 1;
 		nowBlock = nowPage / blockSize;
-		startPage = nowPage * blockSize;
-		endPage = (nowPage != (blockCount - 1)) ? startPage + (blockSize - 1) : pageCount - 1;
-		prevBlock = startPage + blockSize;
-		nextBlock = startPage - blockSize;
+		startPage = nowBlock * blockSize;
+		endPage = (nowBlock != (blockCount - 1)) ? startPage + (blockSize-1) : pageCount - 1;
+		prevBlock = startPage - blockSize;
+		nextBlock = startPage + blockSize;
 		existPrev = nowBlock != 0;
-		existNext = nowBlock != (blockCount - 1);
+		existNext = (nowBlock+1) != blockCount; 
 
 	}
 }

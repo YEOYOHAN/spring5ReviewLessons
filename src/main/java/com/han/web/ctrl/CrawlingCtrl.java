@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,14 +34,14 @@ public class CrawlingCtrl {
 		return crawler.cgvCrawling();
 		
 	}
-	@GetMapping("/bugs")
-	public Map<?,?> bugs() {
-		System.out.println("BUGS");
+	@GetMapping("/bugs/page/{page}")
+	public Map<?,?> bugs(@PathVariable String page) {
+		System.out.println("넘어온 페이지"+page);
 		ArrayList<HashMap<String, String>> list = crawler.bugsCrawling();
 		pagep.setRowCount(list.size());
 		pagep.setPageSize(10);
 		pagep.setBlockSize(5);
-		pagep.setNowPage(0);
+		pagep.setNowPage(pagep.integer(page));
 		pagep.paging();
 		ArrayList<HashMap<String, String>> temp = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
