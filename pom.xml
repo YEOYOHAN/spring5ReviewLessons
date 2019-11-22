@@ -34,9 +34,9 @@
 		<HikariCP-version>3.4.0</HikariCP-version>
 		<jsoup-version>1.12.1</jsoup-version>
 		<mariadb-version>2.4.4</mariadb-version>
-		
 	</properties>
 	<dependencies>
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -85,7 +85,31 @@
     			<artifactId>spring-jdbc</artifactId>
     			<version>${spring-version}</version>
 			</dependency>
-			
+			<!-- spring-security-web -->
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-web</artifactId>
+			    <version>5.0.7.RELEASE</version>
+			</dependency>
+			<!-- spring-security-config -->
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-config</artifactId>
+			    <version>5.0.7.RELEASE</version>
+			</dependency>
+			<!-- spring-security-core -->
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-core</artifactId>
+			    <version>5.0.7.RELEASE</version>
+			</dependency>
+			<!--spring-security-taglibs -->
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-taglibs</artifactId>
+			    <version>5.0.7.RELEASE</version>
+			</dependency>
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -144,14 +168,12 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet-version}</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -191,7 +213,6 @@
    			 <artifactId>mybatis-spring</artifactId>
    			 <version>${mybatis-spring-version}</version>
 		</dependency>
-		
 		<dependency>
    			 <groupId>com.fasterxml.jackson.core</groupId>
    			 <artifactId>jackson-databind</artifactId>
@@ -207,15 +228,15 @@
     		<artifactId>jackson-annotations</artifactId>
     		<version>${jackson-version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 		
+		<!-- jackson-dataformat-xml -->
 		   <dependency>
           <groupId>org.mariadb.jdbc</groupId>
           <artifactId>mariadb-java-client</artifactId>
           <version>${mariadb-version}</version>
         </dependency>
         
-		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<!-- mockito-all -->
 		<dependency>
 		    <groupId>org.mockito</groupId>
 		    <artifactId>mockito-all</artifactId>
@@ -230,7 +251,8 @@
 			<version>${junit-version}</version>
 			<scope>test</scope>
 		</dependency>
-		 <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		
+		 <!-- spring-test -->
 		<dependency>
 		      <groupId>org.springframework</groupId>
 		      <artifactId>spring-test</artifactId>
@@ -242,14 +264,13 @@
     		<artifactId>jsoup</artifactId>
     		<version>${jsoup-version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+		
+		<!-- thumbnailator -->
 		<dependency>
 		    <groupId>net.coobird</groupId>
 		    <artifactId>thumbnailator</artifactId>
 		    <version>0.4.8</version>
-		</dependency>
-		
-		        
+		</dependency>    
 	</dependencies>
     <build>
         <plugins>

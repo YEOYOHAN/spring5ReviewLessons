@@ -1,5 +1,6 @@
 package com.han.web.pxy;
 
+import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -27,5 +28,9 @@ public class Proxy {
 	public void printer(String s) {
 		Consumer<String> c = System.out::print;
 		c.accept(s);
+	}
+	public int random(int i, int o) {
+	      BiFunction<Integer,Integer,Integer> p = (a,b) ->(int)(Math.random()*(b-a))+a; 
+	    return p.apply(i, o);
 	}
 }

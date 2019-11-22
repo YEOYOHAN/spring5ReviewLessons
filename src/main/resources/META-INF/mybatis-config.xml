@@ -6,5 +6,6 @@
     </settings>
     <typeAliases>
 		<typeAlias alias="User"  type="com.han.web.usr.User"/>
+		<typeAlias alias="Proxy"  type="com.han.web.pxy.Proxy"/>
     </typeAliases>
 </configuration>
